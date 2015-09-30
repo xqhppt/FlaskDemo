@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if session.logged_in %}
+        <form action="{{ url_for('add') }}" method=post class=add-entry>
+            <dl>
+                <dt>姓名:
+                <dd><input type=text size=30 name="Name">
+                <dt>年龄:
+                <dd><input type=text size=30 name="Age">
+                <dt>&nbsp;
+                <dd><input type=submit value="添加">
+            </dl>
+        </form>
+    {% endif %}
+    <ul class=entries>
+        {% for entry in list %}
+            <li><h2>{{ entry.Name }}</h2>{{ entry.Age }}
+        {% else %}
+            <li><em>Unbelievable. No entries here so far</em>
+        {% endfor %}
+    </ul>
+{% endblock %}
